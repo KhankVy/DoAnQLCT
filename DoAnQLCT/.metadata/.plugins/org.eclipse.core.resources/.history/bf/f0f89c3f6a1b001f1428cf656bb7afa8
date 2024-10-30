@@ -1,0 +1,18 @@
+package BUS;
+
+import DAO.GetThuChiDAO;
+
+public class GetThuChiBUS {
+	private GetThuChiDAO dao = new GetThuChiDAO();
+
+	public int calculateMonthlyIncome(int user_id) {
+		return calculateMonthlyIncome(user_id);
+	}
+
+	public int calculateMonthlyExpense(int user_id) {
+		return calculateMonthlyExpense(user_id);
+	}
+	public int getSoDu(int userID, int cargories) {
+		return dao.getSoDu(userID, cargories);
+	}
+}

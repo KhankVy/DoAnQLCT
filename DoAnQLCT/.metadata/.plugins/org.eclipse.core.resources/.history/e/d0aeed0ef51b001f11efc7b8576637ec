@@ -1,0 +1,26 @@
+package BUS;
+
+import java.util.ArrayList;
+
+import DAO.NotificationsDAO;
+import MODEL.Notifications;
+
+public class NotificationsBUS {
+	private NotificationsDAO noti = new NotificationsDAO();
+
+	public ArrayList<Notifications> getAllNotifications(int userId) {
+		return noti.getNotificationsByUserId(userId);
+	}
+
+	public int insertNotifications(Notifications no) {
+		return noti.insertNotifications(no);
+	}
+
+	public int deleteNotifications(int id) {
+		return noti.deleteNotifications(id);
+	}
+
+	public int updateNotifications(int id, Notifications newno) {
+		return noti.updateNotifications(id, newno);
+	}
+}

@@ -1,0 +1,8 @@
+INDEX VERSION 1.134+D:\DoAnQLCT\.metadata\.plugins\org.eclipse.jdt.core
+2201963695.index
+2791970484.index
+3280752106.index
+1865797976.index
+3413270776.index
+1228731185.index
+4293686232.index

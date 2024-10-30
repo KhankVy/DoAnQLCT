@@ -1,0 +1,27 @@
+package BUS;
+
+import java.util.ArrayList;
+
+import DAO.BudgetsDAO;
+import MODEL.Budgets;
+
+public class BudgetsBUS {
+	private BudgetsDAO bud = new BudgetsDAO();
+
+	public ArrayList<Budgets> getAllBudgets() {
+		return bud.getAllBudgets();
+	}
+
+	public int insertBudget(Budgets b) {
+		return bud.insertBudget(b);
+	}
+
+	public int deleteBudgets(int id) {
+		return bud.deleteBudgets(id);
+	}
+
+	public int updateBudgets(int id, Budgets newbd) {
+		return bud.updateBudgets(id, newbd);
+	}
+
+}

@@ -1,0 +1,47 @@
+package DAO;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+
+import MODEL.Transactions;
+
+public class GetThuChiDAO {
+	private ArrayList<Transactions>dstransactions=new ArrayList<Transactions>();
+	// Hàm tính tổng thu theo tháng
+		private int calculateMonthlyIncome() {
+	        int totalIncome = 0;
+	        Calendar calendar = Calendar.getInstance();
+	        int currentMonth = calendar.get(Calendar.MONTH);
+	        int currentYear = calendar.get(Calendar.YEAR);
+
+	        for (Transactions transaction : dstransactions) {
+	            calendar.setTime(transaction.getDate());
+	            int transactionMonth = calendar.get(Calendar.MONTH);
+	            int transactionYear = calendar.get(Calendar.YEAR);
+	            
+	            if (transaction.getType().equals("Thu") && transactionMonth == currentMonth && transactionYear == currentYear) {
+	                totalIncome += transaction.getAmount();
+	            }
+	        }
+	        return totalIncome;
+	    }
+
+	    // Hàm tính tổng chi theo tháng
+		private int calculateMonthlyExpense() {
+	        int totalExpense = 0;
+	        Calendar calendar = Calendar.getInstance();
+	        int currentMonth = calendar.get(Calendar.MONTH);
+	        int currentYear = calendar.get(Calendar.YEAR);
+
+	        for (Transactions transaction : transactions) {
+	            calendar.setTime(transaction.getDate());
+	            int transactionMonth = calendar.get(Calendar.MONTH);
+	            int transactionYear = calendar.get(Calendar.YEAR);
+	            
+	            if (transaction.getType().equals("Chi") && transactionMonth == currentMonth && transactionYear == currentYear) {
+	                totalExpense += transaction.getAmount();
+	            }
+	        }
+	        return totalExpense;
+	    }
+}

@@ -1,0 +1,186 @@
+package GUI;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
+
+import BUS.CategoríeBUS;
+import BUS.UsersBus;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JMenuItem;
+
+public class FmBudgets extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField txtAmount;
+	private JTextField txtSDate;
+	private JTextField txtEDate;
+	private JTable table;
+	/////////////////////
+	private CategoríeBUS bus = new CategoríeBUS();
+	private ArrayList<Categories> dsCategory = new ArrayList<Categories>();
+	private UsersBus ubus = new UsersBus();
+	private ArrayList<Users> dsUsers = new ArrayList<Users>();
+	private BudgetsBUS bdbus = new BudgetsBUS();
+	private ArrayList<Budgets> dsBudgets = new ArrayList<Budgets>();
+	private int index = -1;
+	private static int currentUserID;
+	private static int currentCategories;
+	
+
+	public static int getCurrentUserID() {
+		return currentUserID;
+	}
+
+	public static void setCurrentUserID(int currentUserID) {
+		FmBudgets.currentUserID = currentUserID;
+	}
+
+	public static int getCurrentCategories() {
+		return currentCategories;
+	}
+
+	public static void setCurrentCategories(int currentCategories) {
+		FmBudgets.currentCategories = currentCategories;
+	}
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FmBudgets frame = new FmBudgets();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public FmBudgets() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 728, 560);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblBudgets = new JLabel("BUDGETS");
+		lblBudgets.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblBudgets.setBounds(286, 48, 146, 34);
+		contentPane.add(lblBudgets);
+		
+		JLabel lblNewLabel = new JLabel("CategoryName");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel.setBounds(24, 111, 146, 25);
+		contentPane.add(lblNewLabel);
+		
+		JComboBox cbCateId = new JComboBox();
+		cbCateId.setBounds(190, 116, 328, 27);
+		contentPane.add(cbCateId);
+		
+		JLabel lblAmount = new JLabel("Amount");
+		lblAmount.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblAmount.setBounds(24, 159, 69, 25);
+		contentPane.add(lblAmount);
+		
+		txtAmount = new JTextField();
+		txtAmount.setColumns(10);
+		txtAmount.setBounds(190, 165, 328, 26);
+		contentPane.add(txtAmount);
+		
+		JLabel lblStartdate = new JLabel("Start_date");
+		lblStartdate.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblStartdate.setBounds(24, 208, 115, 25);
+		contentPane.add(lblStartdate);
+		
+		txtSDate = new JTextField();
+		txtSDate.setColumns(10);
+		txtSDate.setBounds(190, 209, 328, 26);
+		contentPane.add(txtSDate);
+		
+		JLabel lblEnddate = new JLabel("End_date");
+		lblEnddate.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblEnddate.setBounds(24, 254, 115, 25);
+		contentPane.add(lblEnddate);
+		
+		txtEDate = new JTextField();
+		txtEDate.setColumns(10);
+		txtEDate.setBounds(190, 253, 328, 26);
+		contentPane.add(txtEDate);
+		
+		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnAdd.setBounds(565, 98, 111, 46);
+		contentPane.add(btnAdd);
+		
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnDelete.setBounds(565, 174, 111, 45);
+		contentPane.add(btnDelete);
+		
+		JButton btnUpdate = new JButton("Update");
+		btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnUpdate.setBounds(565, 252, 111, 46);
+		contentPane.add(btnUpdate);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(17, 324, 659, 170);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"New column", "New column", "New column", "New column"
+			}
+		));
+		scrollPane.setViewportView(table);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Home");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		mntmNewMenuItem.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		mntmNewMenuItem.setBounds(22, 10, 135, 26);
+		contentPane.add(mntmNewMenuItem);
+	}
+}

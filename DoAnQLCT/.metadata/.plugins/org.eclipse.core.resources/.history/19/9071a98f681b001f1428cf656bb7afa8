@@ -1,0 +1,10 @@
+package BUS;
+
+import DAO.GetThuChiDAO;
+
+public class GetThuChiBUS {
+	private GetThuChiDAO dao=new GetThuChiDAO();
+	private int calculateMonthlyIncome(int user_id) {
+		return calculateMonthlyIncome(user_id);
+	}
+}
